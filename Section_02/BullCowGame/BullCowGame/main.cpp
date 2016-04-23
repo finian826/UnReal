@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <iostream>
+#include <string>
 #include "4wordlist.h"
 #include "5wordlist.h"
+#include "MyFunctions.h"
 
 using namespace std;
 
@@ -9,12 +11,14 @@ using namespace std;
 int main()
 {
 	int RetVal = 0;
-	constexpr int WORD_LENGTH = 6;
+	int GuessLimit = 5;
+	
+	PrintIntro();
 
-	cout << "Welcome to Bulls and Cows\n";
-	cout << endl;
-	cout << "Can you guess and " << WORD_LENGTH << " letter isogram I'm thinking of? \n";
-	cout << endl;
+	for (int count = 1; count <= GuessLimit; count++)
+	{
+		GetGuess();
+	}
 
 	return RetVal;
 }
