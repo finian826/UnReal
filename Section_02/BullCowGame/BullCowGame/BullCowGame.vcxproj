@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="4wordlist.h" />
     <ClInclude Include="5wordlist.h" />
+    <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

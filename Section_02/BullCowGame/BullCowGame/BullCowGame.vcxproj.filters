@@ -24,6 +24,9 @@
     <ClInclude Include="4wordlist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BullCowGame.rc">
