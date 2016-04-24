@@ -5,20 +5,20 @@
 #include "5wordlist.h"
 #include "MyFunctions.h"
 
+
 using namespace std;
 
 
 int main()
 {
 	int RetVal = 0;
-	int GuessLimit = 5;
+	
 	
 	PrintIntro();
 
-	for (int count = 1; count <= GuessLimit; count++)
-	{
-		GetGuess();
-	}
+	PlayGame();
 
 	return RetVal;
 }
+
+

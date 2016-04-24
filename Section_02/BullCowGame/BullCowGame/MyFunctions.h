@@ -25,9 +25,25 @@ string GetGuess() {
 	cout << "Please enter a guess? ";
 	getline(cin, Guess);
 
-	//repeat the guess back to them
-	cout << "Your guess was: " << Guess << endl << endl;
+	
 
 	return Guess;
+}
+
+void PrintGuess(std::string &Guess)
+{
+	//repeat the guess back to them
+	cout << "Your guess was: " << Guess << endl << endl;
+}
+
+void PlayGame()
+{
+	int GuessLimit = 5;
+	for (int count = 1; count <= GuessLimit; count++)
+	{
+		
+		PrintGuess(GetGuess());
+	}
+	return;
 }
 #endif // !__MyFunctions__
