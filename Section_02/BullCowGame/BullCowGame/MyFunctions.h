@@ -25,8 +25,6 @@ string GetGuess() {
 	cout << "Please enter a guess? ";
 	getline(cin, Guess);
 
-	
-
 	return Guess;
 }
 
@@ -41,7 +39,6 @@ void PlayGame()
 	int GuessLimit = 5;
 	for (int count = 1; count <= GuessLimit; count++)
 	{
-		
 		PrintGuess(GetGuess());
 	}
 	return;
