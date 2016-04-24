@@ -4,19 +4,24 @@
 #include "4wordlist.h"
 #include "5wordlist.h"
 #include "MyFunctions.h"
+#include "FBullCowGame.h"
 
-
-using namespace std;
+using FText = std::string;
+using int32 = int;
+using FString = std::string;
 
 
 int main()
 {
-	int RetVal = 0;
+	int32 RetVal = 0;
 	
+	do
+	{
+		PrintIntro();
+		PlayGame();
+		
+	} while (AskToPlayAgain());
 	
-	PrintIntro();
-
-	PlayGame();
 
 	return RetVal;
 }

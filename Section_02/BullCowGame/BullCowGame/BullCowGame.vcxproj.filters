@@ -27,6 +27,9 @@
     <ClInclude Include="MyFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FBullCowGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="BullCowGame.rc">
@@ -35,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FBullCowGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
