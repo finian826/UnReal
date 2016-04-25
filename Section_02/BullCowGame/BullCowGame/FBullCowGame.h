@@ -9,24 +9,39 @@ using int32 = int;
 using FText = std::string;
 
 // all values initialized to 0
-struct BullCowcount
+struct FBullCowcount
 {
 	int32 Bulls = 0;
 	int32 Cows = 0;
 
 };
+
+enum class EGuessStatus
+{
+	Invalid_Status,
+	OK,
+	Not_Isogram,
+	Not_Lowercase,
+	Wrong_Length
+};
+
+
+
 class FBullCowGame
 {
 public:
 	FBullCowGame();
 
-	void Reset();
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
+	int32 GetHiddenWordLenth() const;
+
 	bool IsGameWon() const;
-	bool CheckGuessValidity(FText); // TODO make a more rich return value
+	EGuessStatus CheckGuessValidity(FText) const; 
+
 	// count bulls and cows, increase try #
-	BullCowcount SubmitGuess(FString);
+	FBullCowcount SubmitGuess(FString);
+	void Reset();
 
 private:
 	// Values set in constructor
