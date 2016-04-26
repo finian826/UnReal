@@ -7,6 +7,7 @@ using FText = std::string;
 int32 FBullCowGame::GetMaxTries() const {return MyMaxTries;}
 int32 FBullCowGame::GetCurrentTry() const {return MyCurrentTry;}
 int32 FBullCowGame::GetHiddenWordLenth() const {return MyHiddenWord.length();}
+bool FBullCowGame::IsGameWon() const { return bGameIsWon;}
 
 FBullCowGame::FBullCowGame() {Reset();}
 
@@ -19,22 +20,20 @@ void FBullCowGame::Reset()
 	MyHiddenWord = HIDDEN_WORD;
 	
 	MyCurrentTry = 1;
+	bGameIsWon = false;
 
 	return;
 }
 
-bool FBullCowGame::IsGameWon() const
-{
-	return false;
-}
+
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FText Guess) const
 {
-	if (false) // if not an isogram
+	if (false) // TODO Write function for isogram
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false) // if not all lowercase
+	else if (false) // TODO if not all lowercase
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -51,22 +50,20 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FText Guess) const
 }
 
 
-FBullCowcount FBullCowGame::SubmitGuess(FString Guess)
+FBullCowcount FBullCowGame::SubmitValidGuess(FString Guess)
 {
-	// increse turn
 	MyCurrentTry++;
 
-	//setup return variable
 	FBullCowcount BullCowCount;
 	BullCowCount.Bulls = 0;
 	BullCowCount.Cows = 0;
 
-	int32 HiddenWordLength = MyHiddenWord.length();
+	int32 WordLength = MyHiddenWord.length();
 	//loop through each letter
-	for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++)
+	for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar++)
 	{
 		//compare each letter to hidden word
-		for (int32 GChar = 0;GChar < HiddenWordLength;GChar++)
+		for (int32 GChar = 0;GChar < WordLength;GChar++)
 		{
 			// if they match then
 			if (Guess[MHWChar] == MyHiddenWord[GChar])
@@ -86,5 +83,14 @@ FBullCowcount FBullCowGame::SubmitGuess(FString Guess)
 
 		}
 	}
+	if (BullCowCount.Bulls == WordLength) 
+	{ 
+		bGameIsWon = true;
+	}
+	else 
+	{ 
+		bGameIsWon = false;
+	}
+
 	return BullCowCount;
 }

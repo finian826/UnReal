@@ -14,7 +14,7 @@ using FString = std::string;
 void PrintIntro() {
 	
 
-	std::cout << "Welcome to Bulls and Cows\n";
+	std::cout << "/n/nWelcome to Bulls and Cows\n";
 	std::cout << std::endl;
 	std::cout << "Can you guess and " << BCGame.GetHiddenWordLenth() << " letter isogram I'm thinking of? \n";
 	std::cout << std::endl;
@@ -22,15 +22,16 @@ void PrintIntro() {
 
 }
 
-FText GetValidGuess() // TODO Change to GetValidGuess
+FText GetValidGuess() 
 {
+	FText Guess = "";
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
 	do
 	{
-		FText Guess = "";
+		
 		int32 CurrentTry = BCGame.GetCurrentTry();
 		// get guess from the player
-		// TODO Add loop for guess checking.
+		
 		std::cout << "Try " << CurrentTry << ". Please enter a guess? ";
 		std::getline(std::cin, Guess);
 		// submit valid guess
@@ -47,11 +48,16 @@ FText GetValidGuess() // TODO Change to GetValidGuess
 		case EGuessStatus::Not_Lowercase:
 			std::cout << "Please enter your word in lowercase./n";
 			break;
+		case EGuessStatus::OK:
+			//ok
+			break;
 		default:
-			return Guess;
+			// ok
+			break;
 		}
 		std::cout << std::endl;
 	} while (Status != EGuessStatus::OK);
+	return Guess;
 }
 
 void PrintGuess(FText &Guess)
@@ -65,16 +71,18 @@ void PlayGame()
 {
 	BCGame.Reset();
 	int32 GuessLimit = BCGame.GetMaxTries();
-	// TODO change to while loop once validation is done
-	for (int32 count = 1; count <= GuessLimit; count++)
+	
+	// loop until game won or turns exhausted
+	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= GuessLimit)
 	{
 		FText Guess = GetValidGuess();
 		PrintGuess(Guess);
-		FBullCowcount BullCowCount = BCGame.SubmitGuess(Guess);
+		FBullCowcount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 	}
-	// TODO Add game summery
+	// game summery
+	PrinGameSummary();
 	return;
 }
 
@@ -87,5 +95,18 @@ bool AskToPlayAgain()
 
 	return ((Response[0] == 'y') || (Response[0] == 'Y'));
 	
+}
+
+void PrinGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "You Won!/n";
+	}
+	else
+	{
+		std::cout << "You Lost!/n";
+	}
+	return;
 }
 #endif // !__MyFunctions__

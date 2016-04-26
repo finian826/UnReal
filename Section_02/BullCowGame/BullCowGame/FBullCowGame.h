@@ -40,7 +40,7 @@ public:
 	EGuessStatus CheckGuessValidity(FText) const; 
 
 	// count bulls and cows, increase try #
-	FBullCowcount SubmitGuess(FString);
+	FBullCowcount SubmitValidGuess(FString);
 	void Reset();
 
 private:
@@ -48,6 +48,7 @@ private:
 	int32 MyCurrentTry;
 	int32 MyMaxTries;
 	FString MyHiddenWord;
+	bool bGameIsWon;
 	
 };
 #endif // !__FBullCowGame__
