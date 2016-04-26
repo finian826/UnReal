@@ -1,5 +1,11 @@
 #pragma once
 #include "FBullCowGame.h"
+#include "isogram.h"
+#include <map>
+#ifndef TMAP
+#define TMap std::map
+#endif // !TMAP
+
 
 #ifndef __MyFunctions__
 #define __MyFunctions__
@@ -67,6 +73,18 @@ void PrintGuess(FText &Guess)
 
 }
 
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "You Won!/n";
+	}
+	else
+	{
+		std::cout << "You Lost!/n";
+	}
+	return;
+}
 void PlayGame()
 {
 	BCGame.Reset();
@@ -82,7 +100,7 @@ void PlayGame()
 		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 	}
 	// game summery
-	PrinGameSummary();
+	PrintGameSummary();
 	return;
 }
 
@@ -97,16 +115,5 @@ bool AskToPlayAgain()
 	
 }
 
-void PrinGameSummary()
-{
-	if (BCGame.IsGameWon())
-	{
-		std::cout << "You Won!/n";
-	}
-	else
-	{
-		std::cout << "You Lost!/n";
-	}
-	return;
-}
+
 #endif // !__MyFunctions__

@@ -1,4 +1,9 @@
 #include "FBullCowGame.h"
+#include"isogram.h"
+#include <map>
+#ifndef TMAP
+#define TMap std::map
+#endif // !TMAP
 
 using int32 = int;
 using FString = std::string;
@@ -11,9 +16,11 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon;}
 
 FBullCowGame::FBullCowGame() {Reset();}
 
+Isogram ChkIsogram;
+
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 5;
 	MyMaxTries = MAX_TRIES;
 
 	const FString HIDDEN_WORD = "planet";
@@ -27,10 +34,12 @@ void FBullCowGame::Reset()
 
 
 
-EGuessStatus FBullCowGame::CheckGuessValidity(FText Guess) const
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
+	
 	if (false) // TODO Write function for isogram
 	{
+		ChkIsogram.IsIsogram(Guess);
 		return EGuessStatus::Not_Isogram;
 	}
 	else if (false) // TODO if not all lowercase

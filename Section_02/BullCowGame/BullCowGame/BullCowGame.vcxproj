@@ -145,6 +145,7 @@
     <ClInclude Include="4wordlist.h" />
     <ClInclude Include="5wordlist.h" />
     <ClInclude Include="FBullCowGame.h" />
+    <ClInclude Include="isogram.h" />
     <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FBullCowGame.cpp" />
+    <ClCompile Include="isogram.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

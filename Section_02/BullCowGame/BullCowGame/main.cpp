@@ -5,11 +5,15 @@
 #include "5wordlist.h"
 #include "MyFunctions.h"
 #include "FBullCowGame.h"
+#include "isogram.h"
+#include <map>
+#ifndef TMAP
+#define TMap std::map
+#endif // !TMAP
 
 using FText = std::string;
 using int32 = int;
 using FString = std::string;
-
 
 int main()
 {

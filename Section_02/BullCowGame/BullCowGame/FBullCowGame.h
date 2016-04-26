@@ -1,5 +1,9 @@
 #pragma once
 #include <string>
+#include <map>
+#ifndef TMAP
+#define TMap std::map
+#endif // !TMAP
 
 #ifndef __FBullCowGame__
 #define __FBullCowGame__
@@ -37,7 +41,7 @@ public:
 	int32 GetHiddenWordLenth() const;
 
 	bool IsGameWon() const;
-	EGuessStatus CheckGuessValidity(FText) const; 
+	EGuessStatus CheckGuessValidity(FString) const; 
 
 	// count bulls and cows, increase try #
 	FBullCowcount SubmitValidGuess(FString);
