@@ -32,17 +32,30 @@ void FBullCowGame::Reset()
 	return;
 }
 
+bool FBullCowGame::IsLowerCase(FString Word) const
+{
+	if (Word.length() <= 1) { return true; }
+
+	for (auto Letter : Word)
+	{
+		if (!islower(Letter))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	
-	if (false) // TODO Write function for isogram
+	if (!ChkIsogram.IsIsogram(Guess)) // TODO Write function for isogram
 	{
-		ChkIsogram.IsIsogram(Guess);
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false) // TODO if not all lowercase
+	else if (!IsLowerCase(Guess)) // TODO if not all lowercase
 	{
 		return EGuessStatus::Not_Lowercase;
 	}

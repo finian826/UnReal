@@ -52,7 +52,7 @@ FText GetValidGuess()
 			std::cout << "Please enter and isogram.\n";
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter your word in lowercase./n";
+			std::cout << "Please enter your word in lowercase.\n";
 			break;
 		case EGuessStatus::OK:
 			//ok

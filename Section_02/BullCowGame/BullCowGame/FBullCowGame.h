@@ -54,5 +54,6 @@ private:
 	FString MyHiddenWord;
 	bool bGameIsWon;
 	
+	bool IsLowerCase(FString) const;
 };
 #endif // !__FBullCowGame__

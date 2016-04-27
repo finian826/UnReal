@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DABA1D22-9F4B-41F9-BC68-3DD6914156B2}</ProjectGuid>
+    <ProjectGuid>{FA2C177E-797D-4441-84BD-84A9FA74CE63}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BullCowGame</RootNamespace>
+    <RootNamespace>WordGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -142,18 +142,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="FBullCowGame.h" />
-    <ClInclude Include="isogram.h" />
-    <ClInclude Include="MyFunctions.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="BullCowGame.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="FBullCowGame.cpp" />
     <ClCompile Include="isogram.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="isogram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
