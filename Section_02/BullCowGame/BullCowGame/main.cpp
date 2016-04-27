@@ -1,3 +1,5 @@
+#pragma once
+
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -5,6 +7,7 @@
 #include "FBullCowGame.h"
 #include "isogram.h"
 #include <map>
+
 #ifndef TMAP
 #define TMap std::map
 #endif // !TMAP
@@ -19,7 +22,6 @@ int main()
 	
 	do
 	{
-		PrintIntro();
 		PlayGame();
 		
 	} while (AskToPlayAgain());
@@ -27,5 +29,3 @@ int main()
 
 	return RetVal;
 }
-
-

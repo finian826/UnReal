@@ -1,3 +1,5 @@
+#pragma once
+
 #include "isogram.h"
 #include <map>
 #ifndef TMAP

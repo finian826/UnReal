@@ -20,8 +20,14 @@ using FString = std::string;
 void PrintIntro() {
 	
 
-	std::cout << "/n/nWelcome to Bulls and Cows\n";
+	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	std::cout << std::endl;
+	std::cout << "          }___{         ___ " << std::endl;
+	std::cout << "          (o o)        (o o) " << std::endl;
+	std::cout << "   /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "  / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << " *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "    ^      ^              ^      ^ " << std::endl;
 	std::cout << "Can you guess and " << BCGame.GetHiddenWordLenth() << " letter isogram I'm thinking of? \n";
 	std::cout << std::endl;
 	return;
@@ -38,7 +44,8 @@ FText GetValidGuess()
 		int32 CurrentTry = BCGame.GetCurrentTry();
 		// get guess from the player
 		
-		std::cout << "Try " << CurrentTry << ". Please enter a guess? ";
+		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries();
+		std::cout << ". Please enter a guess? ";
 		std::getline(std::cin, Guess);
 		// submit valid guess
 
@@ -46,13 +53,13 @@ FText GetValidGuess()
 		switch (Status)
 		{
 		case EGuessStatus::Wrong_Length:
-			std::cout << "Please enter a " << BCGame.GetHiddenWordLenth() << " letter word. \n";
+			std::cout << "Please enter a " << BCGame.GetHiddenWordLenth() << " letter word. \n\n";
 			break;
 		case EGuessStatus::Not_Isogram:
-			std::cout << "Please enter and isogram.\n";
+			std::cout << "Please enter and isogram.\n\n";
 			break;
 		case EGuessStatus::Not_Lowercase:
-			std::cout << "Please enter your word in lowercase.\n";
+			std::cout << "Please enter your word in lowercase.\n\n";
 			break;
 		case EGuessStatus::OK:
 			//ok
@@ -61,7 +68,7 @@ FText GetValidGuess()
 			// ok
 			break;
 		}
-		std::cout << std::endl;
+		
 	} while (Status != EGuessStatus::OK);
 	return Guess;
 }
@@ -69,7 +76,7 @@ FText GetValidGuess()
 void PrintGuess(FText &Guess)
 {
 	//repeat the guess back to them
-	std::cout << "Your guess was: " << Guess << std::endl << std::endl;
+	std::cout << "Your guess was: " << Guess << std::endl;
 
 }
 
@@ -81,13 +88,14 @@ void PrintGameSummary()
 	}
 	else
 	{
-		std::cout << "You Lost!/n";
+		std::cout << "You Lost!/nThe word was " << BCGame.GetHiddenWord() << std::endl;
 	}
 	return;
 }
 void PlayGame()
 {
 	BCGame.Reset();
+	PrintIntro();
 	int32 GuessLimit = BCGame.GetMaxTries();
 	
 	// loop until game won or turns exhausted
@@ -97,7 +105,7 @@ void PlayGame()
 		PrintGuess(Guess);
 		FBullCowcount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		std::cout << "Bulls = " << BullCowCount.Bulls;
-		std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
+		std::cout << ". Cows = " << BullCowCount.Cows << std::endl << std::endl;
 	}
 	// game summery
 	PrintGameSummary();

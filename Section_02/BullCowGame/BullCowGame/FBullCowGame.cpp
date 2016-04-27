@@ -1,5 +1,13 @@
+#pragma once
+
 #include "FBullCowGame.h"
 #include"isogram.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <random>
+
 #include <map>
 #ifndef TMAP
 #define TMap std::map
@@ -9,21 +17,56 @@ using int32 = int;
 using FString = std::string;
 using FText = std::string;
 
-int32 FBullCowGame::GetMaxTries() const {return MyMaxTries;}
+
 int32 FBullCowGame::GetCurrentTry() const {return MyCurrentTry;}
 int32 FBullCowGame::GetHiddenWordLenth() const {return MyHiddenWord.length();}
+FString FBullCowGame::GetHiddenWord() const { return MyHiddenWord;}
 bool FBullCowGame::IsGameWon() const { return bGameIsWon;}
 
-FBullCowGame::FBullCowGame() {Reset();}
+int32 FBullCowGame::GetMaxTries() const 
+{
+	TMap<int32, int32> WordLengthToMaxTries{ {3,5},{4,7},{5,9},{6,15},{7,20},{8,25},{9,30},{10,35} };
+
+	return WordLengthToMaxTries[MyHiddenWord.length()];
+}
+FBullCowGame::FBullCowGame() 
+{
+	int32 i = 0;
+	std::fstream in("MasterList.txt");
+	if (!in)
+	{
+		std::cout << "Error opening word list";
+	}
+	else
+	{
+		std::cout << "Reading Words\n";
+	}
+
+	FString word;
+	FString lineIn;
+
+	while (std::getline(in, lineIn))
+	{
+		std::stringstream linestr(lineIn);
+		//std::cout << "Raw:" << lineIn << std::endl;
+		while (std::getline(linestr, word, ','))
+		{
+			WordList[i] = word;
+			i++;
+		}
+	}
+	in.close();
+	TotalWords = i - 1;
+
+	Reset();
+}
 
 Isogram ChkIsogram;
 
+
 void FBullCowGame::Reset()
 {
-	constexpr int32 MAX_TRIES = 5;
-	MyMaxTries = MAX_TRIES;
-
-	const FString HIDDEN_WORD = "planet";
+	const FString HIDDEN_WORD = GetNewWord();
 	MyHiddenWord = HIDDEN_WORD;
 	
 	MyCurrentTry = 1;
@@ -46,16 +89,14 @@ bool FBullCowGame::IsLowerCase(FString Word) const
 	return true;
 }
 
-
-
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	
-	if (!ChkIsogram.IsIsogram(Guess)) // TODO Write function for isogram
+	if (!ChkIsogram.IsIsogram(Guess)) 
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (!IsLowerCase(Guess)) // TODO if not all lowercase
+	else if (!IsLowerCase(Guess)) 
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -70,7 +111,6 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 
 	
 }
-
 
 FBullCowcount FBullCowGame::SubmitValidGuess(FString Guess)
 {
@@ -115,4 +155,16 @@ FBullCowcount FBullCowGame::SubmitValidGuess(FString Guess)
 	}
 
 	return BullCowCount;
+}
+
+FString FBullCowGame::GetNewWord()
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dist(0, TotalWords);
+	FString NewWord;
+
+	NewWord = WordList[dist(gen)];
+
+	return NewWord;
 }
