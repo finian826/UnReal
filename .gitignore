@@ -373,3 +373,6 @@ Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+#Course Specific
+Section_03\BuildingEscape\Content\StarterContent
